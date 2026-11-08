@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import {
   Phone,
   MessageCircle,
@@ -24,6 +25,7 @@ import {
   AlertTriangle,
   FileText,
   BadgeCheck,
+  ArrowRight,
 } from "lucide-react";
 
 function formatTimeUnit(n: number) {
@@ -216,6 +218,35 @@ export default function WindowsLandingPage() {
           </a>
         </div>
       </header>
+
+      {/* BANNER: ORDER SIMILAR WEBSITE PROMO */}
+      <div className="max-w-6xl mx-auto px-4 mt-2">
+        <div className="bg-[#141413] text-white border-2 border-[#141413] rounded-2xl p-3 shadow-[4px_4px_0px_#FF4F18] flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="flex items-center gap-3 text-center sm:text-left">
+            <div className="w-9 h-9 rounded-xl bg-[#FF4F18] text-white flex items-center justify-center font-black text-lg shrink-0 border border-neutral-700 shadow-[2px_2px_0px_#FFD600]">
+              🚀
+            </div>
+            <div>
+              <div className="text-xs sm:text-sm font-black text-white flex flex-wrap items-center gap-2 justify-center sm:justify-start">
+                <span>Нужен такой же продающий сайт для вашего бизнеса?</span>
+                <span className="bg-[#FFD600] text-[#141413] text-[10px] font-black uppercase px-2 py-0.5 rounded-md">
+                  Готовность от 24ч
+                </span>
+              </div>
+              <p className="text-[11px] sm:text-xs text-neutral-300 font-medium">
+                Разработка быстрых лендингов и PWA в Актау с прямой заявкой в WhatsApp • от 25 000 ₸
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/sites"
+            className="shrink-0 inline-flex items-center gap-1.5 bg-[#FFD600] hover:bg-[#FACC15] text-[#141413] font-black text-xs sm:text-sm px-4 py-2 rounded-xl border-2 border-[#141413] shadow-[3px_3px_0px_#FF4F18] transition active:translate-x-0.5 active:translate-y-0.5"
+          >
+            <span>Перейти</span>
+            <ArrowRight className="w-4 h-4 stroke-[3]" />
+          </Link>
+        </div>
+      </div>
 
       {/* BANNER 2: ATTENTION GRABBING BENEFIT TICKER */}
       <div className="max-w-6xl mx-auto px-4 mt-2">
