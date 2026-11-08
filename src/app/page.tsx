@@ -34,16 +34,25 @@ const OWNER_PHONE_DISPLAY = "+7 (778) 804-69-20";
 const OWNER_PHONE_RAW = "+77788046920";
 const OWNER_WHATSAPP_NUMBER = "77788046920";
 
+const FIVE_DAYS_MS = 5 * 24 * 60 * 60 * 1000;
+// Точка отсчёта 5-дневного цикла (фиксированный якорь, синхронизированный по реальному времени)
+const ANCHOR_TIME_MS = 1794160800000;
+
+function calculateRemainingSeconds(): number {
+  const now = Date.now();
+  const diff = now - ANCHOR_TIME_MS;
+  const elapsed = ((diff % FIVE_DAYS_MS) + FIVE_DAYS_MS) % FIVE_DAYS_MS;
+  const remainingMs = FIVE_DAYS_MS - elapsed;
+  return Math.floor(remainingMs / 1000);
+}
+
 export default function WindowsLandingPage() {
-  const [fiveDaySeconds, setFiveDaySeconds] = useState(
-    5 * 86400 + 4 * 3600 + 38 * 60 + 19
-  );
-  const [vipSeconds, setVipSeconds] = useState(5 * 3600 + 14 * 60 + 45);
+  const [fiveDaySeconds, setFiveDaySeconds] = useState(calculateRemainingSeconds);
 
   useEffect(() => {
+    setFiveDaySeconds(calculateRemainingSeconds());
     const interval = setInterval(() => {
-      setFiveDaySeconds((prev) => (prev > 0 ? prev - 1 : 5 * 86400));
-      setVipSeconds((prev) => (prev > 0 ? prev - 1 : 5 * 3600));
+      setFiveDaySeconds(calculateRemainingSeconds());
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -52,10 +61,6 @@ export default function WindowsLandingPage() {
   const h5 = Math.floor((fiveDaySeconds % 86400) / 3600);
   const m5 = Math.floor((fiveDaySeconds % 3600) / 60);
   const s5 = fiveDaySeconds % 60;
-
-  const hVip = Math.floor(vipSeconds / 3600);
-  const mVip = Math.floor((vipSeconds % 3600) / 60);
-  const sVip = vipSeconds % 60;
 
   const getWhatsAppUrl = (text: string) =>
     `https://wa.me/${OWNER_WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
@@ -161,7 +166,7 @@ export default function WindowsLandingPage() {
 
           <div className="flex items-center gap-2">
             <span className="text-xs text-neutral-300 hidden md:inline">До конца акции:</span>
-            <div className="flex items-center gap-1 font-mono text-xs sm:text-sm font-black">
+            <div suppressHydrationWarning className="flex items-center gap-1 font-mono text-xs sm:text-sm font-black">
               <span className="bg-[#262624] border border-neutral-700 px-2 py-0.5 rounded text-[#FFD600]">{d5}д</span>
               <span>:</span>
               <span className="bg-[#262624] border border-neutral-700 px-2 py-0.5 rounded text-white">{formatTimeUnit(h5)}ч</span>
