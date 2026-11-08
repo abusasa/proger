@@ -260,12 +260,12 @@ export default function WindowsLandingPage() {
                     🔥 Выезд + Установка системы:
                   </div>
                   <div className="text-3xl sm:text-4xl font-black text-[#141413]">
-                    от 5 000 ₸{" "}
+                    от 7 000 ₸{" "}
                     <span className="text-sm font-bold text-neutral-400 line-through">10 000 ₸</span>
                   </div>
                 </div>
                 <span className="bg-[#DCFCE7] text-[#15803D] border border-[#15803D] text-xs font-black px-3 py-1 rounded-lg">
-                  Экономия 50%
+                  Экономия 30%
                 </span>
               </div>
 
@@ -301,9 +301,6 @@ export default function WindowsLandingPage() {
                   </div>
                   <div className="text-xs text-neutral-600 font-semibold">
                     Исполнитель • 2 курс ВТиПО (Кибербезопасность)
-                  </div>
-                  <div className="text-[11px] text-[#15803D] font-extrabold flex items-center gap-1 mt-0.5">
-                    ⭐ 2 место WorldSkills по кибербезопасности
                   </div>
                 </div>
               </div>
